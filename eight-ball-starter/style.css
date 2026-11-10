@@ -1,132 +1,921 @@
 
+/* =========================================
+   MAGIC 8 BALL - POOL TABLE THEME
+   No images required!
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --felt: #075b38;
+    --felt-dark: #034329;
+    --felt-light: #0b7046;
+    --gold: #d9ae53;
+    --gold-light: #f5d78a;
+    --wood: #542b16;
+    --wood-light: #965a2d;
+    --black: #101513;
+    --white: #f5f3e9;
+}
+
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 25px;
-    font-family: "Comic Sans MS", "Trebuchet MS", sans-serif;
-    background-color: #75d9f5;
-    color: #174b70;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    color: var(--white);
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(ellipse at center, #126b43 0%, #063d29 65%, #021e16 100%);
+
+    position: relative;
 }
 
-/* Main page */
-.container {
-    max-width: 950px;
-    margin: 20px auto;
-    padding: 25px;
-    background-color: #b9efff;
-    border: 4px solid #ffffff;
-    border-radius: 22px;
+/* =========================================
+   POOL TABLE BACKGROUND
+========================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 12px;
+    border: 14px solid var(--wood-light);
+    outline: 5px solid #32190d;
+    border-radius: 30px;
+    pointer-events: none;
+    z-index: 0;
+
+    box-shadow:
+        inset 0 0 20px #001d11,
+        0 0 30px rgba(0,0,0,0.6);
 }
 
-/* Heading */
-h1 {
-    text-align: center;
-    color: #ffdf35;
-    font-size: 42px;
-    text-shadow: 2px 3px #276b91;
-    transform: rotate(-1deg);
+body::after {
+    content: "";
+    position: fixed;
+    inset: 35px;
+    border: 2px solid rgba(230, 190, 100, 0.5);
+    border-radius: 18px;
+    pointer-events: none;
+    z-index: 0;
 }
 
-.subtitle {
-    text-align: center;
-    font-size: 17px;
+/* =========================================
+   OCEAN DECORATIONS -> POOL BALLS
+========================================= */
+
+.ocean-glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(20,150,90,.15), transparent 70%);
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
 }
 
-/* Main layout */
-.main-content {
+.bubble {
+    position: fixed;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle at 30% 25%, white 0%, transparent 15%),
+        radial-gradient(circle at 35% 30%, #ffffff 0%, #dedede 12%, #151515 65%, #000 100%);
+
+    box-shadow:
+        inset -5px -7px 10px rgba(0,0,0,.8),
+        0 5px 12px rgba(0,0,0,.5);
+
+    animation: fallingBall linear infinite;
+}
+
+.bubble-one {
+    left: 8%;
+    width: 40px;
+    height: 40px;
+    animation-duration: 14s;
+}
+
+.bubble-two {
+    left: 25%;
+    width: 25px;
+    height: 25px;
+    animation-duration: 19s;
+    animation-delay: -7s;
+}
+
+.bubble-three {
+    left: 75%;
+    width: 50px;
+    height: 50px;
+    animation-duration: 17s;
+    animation-delay: -4s;
+}
+
+.bubble-four {
+    left: 90%;
+    width: 30px;
+    height: 30px;
+    animation-duration: 13s;
+    animation-delay: -9s;
+}
+
+.bubble-five {
+    left: 55%;
+    width: 35px;
+    height: 35px;
+    animation-duration: 21s;
+    animation-delay: -12s;
+}
+
+@keyframes fallingBall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .8;
+    }
+
+    90% {
+        opacity: .8;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.site-nav {
+    position: relative;
+    z-index: 2;
+    padding: 25px 0;
+    background: rgba(0,0,0,.3);
+    border-bottom: 2px solid rgba(217,174,83,.5);
+}
+
+.nav-content {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    gap: 25px;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
 }
 
-/* Shell section */
-.shell-section {
-    text-align: center;
-    flex: 1;
-    min-width: 250px;
+.navbar-brand {
+    color: var(--gold-light);
+    font-family: 'Fredoka', sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
 }
 
-.shell-section img {
-    width: 230px;
-    max-width: 100%;
-    height: auto;
+.navbar-brand:hover {
+    color: white;
 }
 
-/* Question section */
-.question-section {
-    flex: 1;
-    min-width: 250px;
-    background-color: #fff9d9;
-    padding: 22px;
-    border: 3px dashed #f3a83b;
-    border-radius: 18px;
+.nav-tagline {
+    color: #d5d8c9;
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 600;
 }
 
-input {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0 15px;
-    border: 2px solid #65b8d9;
-    border-radius: 10px;
-    font-family: inherit;
+/* =========================================
+   MAIN STAGE
+========================================= */
+
+.main-stage {
+    position: relative;
+    z-index: 1;
+    padding: 65px 0 40px;
+}
+
+.intro {
+    margin-bottom: 55px;
+}
+
+.eyebrow {
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.intro h1 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: clamp(38px, 6vw, 65px);
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 5px 15px rgba(0,0,0,.5);
+    margin-bottom: 15px;
+}
+
+.intro-text {
+    color: #d5e8d8;
     font-size: 15px;
+    max-width: 550px;
+    margin: auto;
+    line-height: 1.8;
 }
 
-/* Button */
-button {
-    background-color: #ffdf35;
-    color: #174b70;
-    border: 3px solid #e9a927;
-    border-radius: 12px;
-    padding: 12px 20px;
-    font-family: inherit;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
+/* =========================================
+   MAIN CONTENT LAYOUT
+========================================= */
+
+.oracle-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: stretch;
 }
 
-button:hover {
-    background-color: #ffed83;
-}
+/* =========================================
+   LEFT SIDE - MAGIC 8 BALL
+========================================= */
 
-/* Results */
-#results {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #ffffff;
-    border: 3px dotted #48a9d2;
-    border-radius: 15px;
+.shell-section {
+    position: relative;
     text-align: center;
+    padding: 40px 30px;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(145deg, #06452d, #032d1d);
+
+    border: 8px solid var(--wood-light);
+
+    box-shadow:
+        inset 0 0 25px rgba(0,0,0,.6),
+        0 12px 30px rgba(0,0,0,.4),
+        0 0 0 3px #32190d;
 }
 
-#answer {
-    color: #e66b91;
-    font-size: 24px;
-    font-weight: bold;
+.shell-label {
+    color: var(--gold-light);
+    font-family: 'Fredoka', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
 }
 
-footer {
+.shell-decoration {
+    position: absolute;
+    color: var(--gold);
+    font-size: 30px;
+}
+
+.decoration-left {
+    top: 20px;
+    left: 25px;
+}
+
+.decoration-right {
+    top: 20px;
+    right: 25px;
+}
+
+/* =========================================
+   8 BALL - CSS ONLY
+========================================= */
+
+
+/* REALISTIC MAGIC 8 BALL */
+
+.shell-image-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 260px;
+    position: relative;
+}
+
+/* Black spherical ball */
+.shell-image-area::before {
+    content: "";
+    position: absolute;
+
+    width: 215px;
+    height: 215px;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse at 30% 20%,
+            #666 0%,
+            #292929 18%,
+            #111 48%,
+            #030303 78%,
+            #000 100%
+        );
+
+    border: 3px solid #333;
+
+    box-shadow:
+        inset -15px -20px 25px rgba(0,0,0,.9),
+        inset 8px 8px 18px rgba(255,255,255,.15),
+        0 18px 30px rgba(0,0,0,.65);
+
+    animation: ballFloat 4s ease-in-out infinite;
+}
+
+/* White circular window */
+.shell-image-area::after {
+    content: "8";
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+
+    background: radial-gradient(circle at 35% 25%, #fff, #e5e5e5 75%);
+
+    color: #080808;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 65px;
+    font-weight: 700;
+
+    box-shadow:
+        inset 0 3px 8px rgba(0,0,0,.15),
+        0 2px 8px rgba(0,0,0,.5);
+}
+
+/* Floating animation */
+@keyframes ballFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Hide image but preserve HTML */
+.conch-image {
+    display: none;
+}
+
+/* Create the ball without changing HTML */
+.shell-image-area::before {
+    content: "8";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 205px;
+    height: 205px;
+    border-radius: 50%;
+
+    color: #111;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 105px;
+    font-weight: 700;
+
+    background:
+        radial-gradient(circle at 32% 25%, #555 0%, #252525 25%, #090909 65%, #000 100%);
+
+    border: 5px solid #333;
+
+    box-shadow:
+        inset -15px -18px 25px rgba(0,0,0,.9),
+        inset 10px 10px 20px rgba(255,255,255,.12),
+        0 15px 30px rgba(0,0,0,.6);
+
+    text-shadow: 0 2px 3px rgba(255,255,255,.2);
+
+    animation: ballFloat 4s ease-in-out infinite;
+}
+
+@keyframes ballFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(3deg);
+    }
+}
+
+/* =========================================
+   GREETING
+========================================= */
+
+.greeting {
+    color: var(--gold-light);
+    font-family: 'Fredoka', sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   QUESTION DISPLAY
+========================================= */
+
+.question-display {
+    background: rgba(0,0,0,.3);
+    border: 1px solid rgba(217,174,83,.4);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+.question-out {
+    color: #e5e9dc;
+    font-size: 14px;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================
+   ANSWER DISPLAY
+========================================= */
+
+.prediction {
+    padding: 20px;
+    border-radius: 15px;
+
+    background: linear-gradient(145deg, #111, #050505);
+
+    border: 3px solid var(--gold);
+
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,.05),
+        0 5px 15px rgba(0,0,0,.4);
+}
+
+.prediction-label {
+    display: block;
+    color: var(--gold-light);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.answer {
+    color: white;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.answer-type {
+    color: var(--gold-light);
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+/* =========================================
+   RIGHT SIDE - QUESTION FORM
+========================================= */
+
+.question-section {
+    padding: 40px 35px;
+    border-radius: 20px;
+
+    background: linear-gradient(145deg, #f8f2df, #e4d5b1);
+
+    border: 8px solid var(--wood-light);
+
+    box-shadow:
+        inset 0 0 15px rgba(80,40,10,.15),
+        0 12px 30px rgba(0,0,0,.4),
+        0 0 0 3px #32190d;
+
+    color: #1b261d;
+}
+
+.form-top-icon {
+    font-size: 42px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-eyebrow {
+    text-align: center;
+    font-size: 11px;
+    color: #85601e;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.question-section h2 {
+    font-family: 'Fredoka', sans-serif;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: #183d29;
+    margin-bottom: 12px;
+}
+
+.form-description {
+    text-align: center;
+    font-size: 13px;
+    color: #66604d;
+    margin-bottom: 35px;
+}
+
+.form-label {
+    font-weight: 700;
+    color: #23442e;
+    font-size: 13px;
+    margin-bottom: 9px;
+}
+
+.form-control {
+    border: 2px solid #c5b58e;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 14px;
+    margin-bottom: 25px;
+    background: #fffdf5;
+    color: #222;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    border-color: #27734b;
+    box-shadow: 0 0 0 4px rgba(39,115,75,.15);
+    background: white;
+}
+
+.form-control::placeholder {
+    color: #aaa28d;
+}
+
+/* =========================================
+   ASK BUTTON
+========================================= */
+
+.btn-ask {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(145deg, #176c43, #064329);
+
+    color: white;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 0 #032b1a,
+        0 10px 20px rgba(0,0,0,.2);
+
+    transition: .2s ease;
+}
+
+.btn-ask:hover {
+    background: linear-gradient(145deg, #238c59, #09613b);
+    transform: translateY(-3px);
+    box-shadow:
+        0 9px 0 #032b1a,
+        0 14px 20px rgba(0,0,0,.25);
+}
+
+.btn-ask:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #032b1a;
+}
+
+.form-note {
     text-align: center;
     margin-top: 25px;
-    font-size: 14px;
+    margin-bottom: 0;
+    font-size: 12px;
+    color: #866b3b;
+    font-style: italic;
 }
 
-/* Smaller screens */
-@media (max-width: 600px) {
-    body {
-        padding: 10px;
+/* =========================================
+   FOOTER DECORATION
+========================================= */
+
+.ocean-footer {
+    margin-top: 55px;
+    color: var(--gold-light);
+}
+
+.ocean-footer span {
+    font-size: 23px;
+}
+
+.ocean-footer p {
+    color: #d4e3d6;
+    font-size: 13px;
+    margin: 12px 0;
+}
+
+/* =========================================
+   SITE FOOTER
+========================================= */
+
+.site-footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 22px;
+    background: rgba(0,0,0,.4);
+    border-top: 2px solid rgba(217,174,83,.4);
+    color: #c8d5c9;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 900px) {
+
+    .oracle-layout {
+        grid-template-columns: 1fr;
+        max-width: 650px;
+        margin: auto;
     }
 
-    .container {
-        padding: 15px;
+    .main-stage {
+        padding-top: 45px;
     }
 
-    h1 {
-        font-size: 32px;
+}
+
+@media (max-width: 576px) {
+
+    body::before {
+        inset: 5px;
+        border-width: 7px;
+        border-radius: 15px;
+    }
+
+    body::after {
+        inset: 17px;
+    }
+
+    .site-nav {
+        padding: 18px 0;
+    }
+
+    .nav-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar-brand {
+        font-size: 19px;
+    }
+
+    .nav-tagline {
+        font-size: 9px;
+    }
+
+    .main-stage {
+        padding: 45px 0 25px;
+    }
+
+    .intro {
+        margin-bottom: 35px;
+    }
+
+    .intro h1 {
+        font-size: 39px;
+    }
+
+    .intro-text {
+        font-size: 13px;
+    }
+
+    .shell-section,
+    .question-section {
+        padding: 30px 20px;
+        border-width: 5px;
+    }
+
+    .shell-image-area {
+        min-height: 190px;
+    }
+
+    .shell-image-area::before {
+        width: 165px;
+        height: 165px;
+        font-size: 85px;
+    }
+
+    .question-section h2 {
+        font-size: 27px;
+    }
+
+    .answer {
+        font-size: 21px;
+    }
+
+    .ocean-footer {
+        margin-top: 35px;
+    }
+
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+
+/* =========================================
+   MAGIC 8 BALL COLOR CHANGES
+========================================= */
+
+/* =========================================
+   REALISTIC MAGIC 8 BALL
+========================================= */
+
+.shell-image-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 280px;
+    position: relative;
+}
+
+/* Hide original image */
+.conch-image {
+    display: none;
+}
+
+/* BLACK 8 BALL */
+.shell-image-area::before {
+    content: "";
+    position: absolute;
+
+    width: 215px;
+    height: 215px;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse at 30% 20%,
+            #777 0%,
+            #292929 18%,
+            #111 48%,
+            #030303 78%,
+            #000 100%
+        );
+
+    border: 3px solid #333;
+
+    box-shadow:
+        inset -15px -20px 25px rgba(0,0,0,.9),
+        inset 8px 8px 18px rgba(255,255,255,.15),
+        0 18px 30px rgba(0,0,0,.65);
+
+    animation: ballFloat 4s ease-in-out infinite;
+
+    transition: box-shadow .6s ease;
+}
+
+/* WHITE 8 WINDOW */
+.shell-image-area::after {
+    content: "8";
+
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            #fff 0%,
+            #f5f5f5 50%,
+            #d5d5d5 100%
+        );
+
+    color: #080808;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: 65px;
+    font-weight: 700;
+
+    box-shadow:
+        inset 0 3px 8px rgba(0,0,0,.15),
+        0 2px 8px rgba(0,0,0,.5);
+}
+
+/* =========================================
+   FLOATING ANIMATION
+========================================= */
+
+@keyframes ballFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* =========================================
+   GOOD ANSWER - GREEN
+========================================= */
+
+.shell-image-area.good::before {
+    box-shadow:
+        0 0 25px #20e66a,
+        0 0 50px rgba(32,230,106,.7),
+        0 0 80px rgba(32,230,106,.3),
+        inset -15px -20px 25px #000;
+}
+
+/* =========================================
+   BAD ANSWER - RED
+========================================= */
+
+.shell-image-area.bad::before {
+    box-shadow:
+        0 0 25px #ff3333,
+        0 0 50px rgba(255,40,40,.7),
+        0 0 80px rgba(255,40,40,.3),
+        inset -15px -20px 25px #000;
+}
+
+/* =========================================
+   NEUTRAL ANSWER - GOLD
+========================================= */
+
+.shell-image-area.neutral::before {
+    box-shadow:
+        0 0 25px #ffcf50,
+        0 0 50px rgba(255,207,80,.7),
+        0 0 80px rgba(255,207,80,.3),
+        inset -15px -20px 25px #000;
+}
+
+/* =========================================
+   MOBILE SIZE
+========================================= */
+
+@media (max-width: 576px) {
+    .shell-image-area {
+        min-height: 230px;
+    }
+
+    .shell-image-area::before {
+        width: 180px;
+        height: 180px;
+    }
+
+    .shell-image-area::after {
+        width: 80px;
+        height: 80px;
+        font-size: 55px;
     }
 }

@@ -55,7 +55,7 @@ if (randomNumber === 0) {
 }
 
 document.getElementById('answer').textContent = eightBall;
-
+changeBallColor(randomNumber);
 
 
 
@@ -70,7 +70,27 @@ document.getElementById('answer').textContent = eightBall;
 
 
 
-// show the 8ball type badge
+// this part i had to use AI but its for the design of the 8ball and if the answer is good or not
+function changeBallColor(randomNumber) {
+
+    let ball = document.querySelector('.shell-image-area');
+    let answerType = document.getElementById('answerType');
+
+    ball.classList.remove('good', 'bad', 'neutral');
+
+    if (randomNumber <= 3) {
+        ball.classList.add('good');
+        answerType.textContent = "✓ POSITIVE ANSWER";
+
+    } else if (randomNumber <= 5) {
+        ball.classList.add('neutral');
+        answerType.textContent = "✦ NEUTRAL ANSWER";
+
+    } else {
+        ball.classList.add('bad');
+        answerType.textContent = "✕ NEGATIVE ANSWER";
+    }
+}
 
 
 
